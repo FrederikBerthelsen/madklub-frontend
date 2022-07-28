@@ -1,6 +1,6 @@
 <template>
   <section>
-    Home
+    Profile
   </section>
 </template>
 
@@ -9,6 +9,6 @@
 // import axios from 'axios'
 
 export default {
-  name: 'HomeView',
+  name: 'ProfileView',
 }
 </script>

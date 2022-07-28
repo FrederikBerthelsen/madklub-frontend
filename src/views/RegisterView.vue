@@ -1,0 +1,146 @@
+<template>
+  <div class="register">
+    <div class="container has-text-centered">
+      <div class="columns is-flex is-vcentered">
+        <div class="column is-4 is-offset-4">
+          <div class="box" style="margin-top: -3%;">
+            <h3 class="title">Registrer</h3>
+            <div class="divider is-primary"><p class="divider-tag">Dit navn</p></div>
+            <b-field custom-class="is-medium" label="Fornavn" label-position="on-border">
+              <b-input size="is-medium"
+                       icon="account-circle"
+                       placeholder="Dit fornavn"
+                       v-model="fornavn">
+              </b-input>
+            </b-field>
+            <b-field custom-class="is-medium" label="Efternavn" label-position="on-border">
+              <b-input size="is-medium"
+                       icon="account-circle"
+                       placeholder="Dit efternavn"
+                       v-model="efternavn">
+              </b-input>
+            </b-field>
+            <div class="divider is-primary"><p class="divider-tag">Din diæt</p></div>
+            <div class="container">
+              <b-field>
+                <b-radio-button v-model="diet"
+                  native-value="vegetarian"
+                  type="is-primary is-light">
+                  <b-icon icon="silverware-fork-knife"></b-icon>
+                  Vegetarisk
+                </b-radio-button>
+              </b-field>
+              <b-field>
+                <b-radio-button v-model="diet"
+                  native-value="vegan"
+                  type="is-primary is-light">
+                  <b-icon icon="silverware-fork-knife"></b-icon>
+                  Vegansk
+                </b-radio-button>
+              </b-field>
+              <b-field>
+                <b-radio-button v-model="diet"
+                  native-value="meat"
+                  type="is-primary is-light">
+                  <b-icon icon="silverware-fork-knife"></b-icon>
+                  Kød
+                </b-radio-button>
+              </b-field>
+            </div>
+            <div class="divider is-primary"><p class="divider-tag">Dit login</p></div>
+            <b-field custom-class="is-medium" label="Email"  label-position="on-border">
+              <b-input type="email"
+                       size="is-medium"
+                       icon="at"
+                       placeholder="din@email.com"
+                       v-model="email">
+              </b-input>
+            </b-field>
+            <b-field custom-class="is-medium" label="Password" label-position="on-border">
+              <b-input type="password"
+                       size="is-medium"
+                       icon="lock"
+                       placeholder="Dit password"
+                       v-model="password">
+              </b-input>
+            </b-field>
+            <b-field custom-class="is-medium" label="Gentag password" label-position="on-border">
+              <b-input type="password"
+                       size="is-medium"
+                       icon="lock"
+                       placeholder="Gentag dit password"
+                       @keyup.native.enter="submitRegistration()"
+                       v-model="re_password">
+              </b-input>
+            </b-field>
+            <div class="content"></div>            
+            <b-button size="is-medium"
+                      icon-left="account-plus"
+                      type="is-primary is-fullwidth"
+                      @click="submitRegistration()">
+              Registrer
+            </b-button>
+            <p class="mb-3" style="margin-top: 2rem;">Har du allerede en bruger? <router-link to="/log-in" class="has-text-link">Log ind her</router-link></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  name: 'LogInView',
+  data() {
+    return {
+      fornavn: '',
+      efternavn: '',
+      diet: 'vegetarian',
+      email: '',
+      password: '',
+      re_password: '',
+    }
+  },
+  methods: {
+    async submitRegistration() {
+      const formData = {
+        first_name: this.fornavn,
+        last_name: this.efternavn,
+        diet: this.diet,
+        email: this.email,
+        password: this.password,
+        re_password: this.re_password
+      }
+
+      await axios.post("/auth/users/", formData)
+                 .then(response => {
+                    console.log(response)
+                    this.$router.push({ path: '/log-in'})
+                    this.$buefy.toast.open({
+                      duration: 5000,
+                      message: 'Du er nu oprettet og kan logge ind!',
+                      position: 'is-bottom-right',
+                      type: 'is-info',
+                      pauseOnHover: true
+                    })
+                 })
+                 .catch(error => {
+                    console.log(error)
+                 })
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.b-radio.radio.button.is-selected {
+  border-color: hsl(171, 100%, 41%);
+}
+.divider-tag {
+  color: black;
+  text-transform: none;
+  font-size: 0.9rem;
+}
+</style>
