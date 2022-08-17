@@ -7,9 +7,14 @@
         </b-navbar-item>
       </template>
       <template #end>
+        <b-navbar-item v-if="$store.state.isStaff" class="is-white" tag="router-link" :to="{ path: '/createschema'}">
+          <span style="padding-right: 0.5em;">Madklub skema</span>
+          <b-icon icon="clock-outline" size="is-small"></b-icon>
+        </b-navbar-item>        
+
         <b-navbar-item v-if="$store.state.isAuthenticated" class="is-white" tag="router-link" :to="{ path: '/profile'}">
           <span style="padding-right: 0.5em;">Min bruger</span>
-          <b-icon icon="login" size="is-small"></b-icon>
+          <b-icon icon="account" size="is-small"></b-icon>
         </b-navbar-item>
         <b-navbar-item v-else class="is-white" tag="router-link" :to="{ path: '/log-in'}">
           <span style="padding-right: 0.5em;">Log ind</span>
@@ -22,7 +27,7 @@
           @click="logout()"
         >
           <span style="padding-right: 0.5em;">Log ud</span>
-          <b-icon icon="account-plus" size="is-small"></b-icon>
+          <b-icon icon="logout" size="is-small"></b-icon>
         </b-navbar-item>
         <b-navbar-item v-else class="is-white" tag="router-link" :to="{ path: '/register'}">
           <span style="padding-right: 0.5em;">Registrer</span>
@@ -34,6 +39,15 @@
     <section class="section">
       <router-view/>
     </section>
+
+    <b-loading v-model="$store.state.isLoading">
+        <b-icon
+            pack="fas"
+            icon="spinner"
+            size="is-large"
+            custom-class="fa-spin">
+        </b-icon>
+      </b-loading>
   </div>
 </template>
 
@@ -46,9 +60,9 @@ export default {
       showMobileMenu: false
     }
   },
-  beforeCreate() {
-    this.$store.dispatch('initializeStore')
-  },
+  // beforeCreate() {
+  //   this.$store.dispatch('initializeStore')
+  // },
   methods: {
     logout() {
       axios.post("/auth/token/logout/")
@@ -84,6 +98,19 @@ $success-light: findLightColor($success);
 $success-dark: findDarkColor($success);
 $success-invert: findColorInvert($success);
 
+$danger: hsl(348, 100%, 61%);
+$danger-light: findLightColor($danger);
+$danger-dark: findDarkColor($danger);
+$danger-invert: findColorInvert($danger);
+
+$tabs-boxed-link-focus-active-background-color: $primary;
+$tabs-boxed-link-focus-background-color: $primary;
+$tabs-boxed-link-focus-active-border-bottom-color: $primary;
+$tabs-boxed-link-focus-border-bottom-color: $primary;
+
+$modal-card-head-background-color: $primary-dark;
+$modal-card-title-color: white;
+
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
     (
@@ -111,6 +138,12 @@ $colors: mergeColorMaps(
           $success-dark,
           $success-invert,
         ),
+        "danger": (
+          $danger,
+          $danger-light,
+          $danger-dark,
+          $danger-invert,
+        ),
     ),
     $custom-colors
 );
@@ -136,5 +169,14 @@ html {
 
 body {
   height: 100%;
+}
+
+.b-radio.radio.button.is-selected {
+  border-color: hsl(171, 100%, 41%);
+}
+.divider-tag {
+  color: black;
+  text-transform: none;
+  font-size: 0.9rem;
 }
 </style>

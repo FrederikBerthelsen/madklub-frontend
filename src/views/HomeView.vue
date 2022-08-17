@@ -10,5 +10,8 @@
 
 export default {
   name: 'HomeView',
+  mounted() {
+    document.title = 'Madklub'
+  }
 }
 </script>

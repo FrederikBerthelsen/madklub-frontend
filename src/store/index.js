@@ -24,14 +24,11 @@ export default new Vuex.Store({
       state.token = ''
       state.isAuthenticated = false
     },
-    setIsLoading(state) {
-      state.isLoading = true
-    },
     setToken(state, {token, is_staff}) {
       localStorage.setItem('token', token)
       axios.defaults.headers.common["Authorization"] = "Token " + token
       state.token = token
-      state.is_staff = is_staff
+      state.isStaff = is_staff
       state.isAuthenticated = true
     },
     removeToken(state) {
@@ -49,10 +46,13 @@ export default new Vuex.Store({
       if (token) {
         axios.defaults.headers.common['Authorization'] = "Token " + token
         await axios.get("/auth/is_staff")
-                    .then(response => {
-                      is_staff = response.data.is_staff
-                    })
-        this.commit('initWithToken', {token, is_staff})
+                   .then(response => {
+                     is_staff = response.data.is_staff
+                     this.commit('initWithToken', {token, is_staff})
+                     return new Promise((resolve) => {
+                        resolve(response)
+                     }) 
+                   })
       } else {
         this.commit('initNoToken')
       }
