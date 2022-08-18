@@ -7,36 +7,10 @@
         </b-navbar-item>
       </template>
       <template #end>
-        <b-navbar-item class="is-white" @click="modal=!modal">
+        <b-navbar-item class="is-white" tag="a" @click="modal=!modal; test()">
           <span style="padding-right: 0.5em;">Madklub ugeplan</span>
           <b-icon icon="calendar-month" size="is-small"></b-icon>
         </b-navbar-item> 
-
-        <b-modal
-            v-model="modal"
-            has-modal-card
-            trap-focus
-            :can-cancel="['escape', 'outside']"
-            aria-role="dialog"
-            aria-label="Example Modal"
-            close-button-aria-label="Close"
-            aria-modal
-          >
-            <div class="modal-card" >
-              <header class="modal-card-head  is-primary-dark">
-                  <p class="modal-card-title">Ugeplan</p>
-                  <button
-                      type="button"
-                      class="delete"
-                      @click="modal = false"/>
-              </header>
-              <section class="modal-card-body">
-                  <div class="container has-text-centered">
-                    <WeeklySchedule />
-                  </div>
-              </section >
-            </div> 
-          </b-modal> 
 
         <b-navbar-item v-if="$store.state.isStaff" class="is-white" tag="router-link" :to="{ path: '/createschema'}">
           <span style="padding-right: 0.5em;">Madklub skema</span>
@@ -68,6 +42,34 @@
     </b-navbar>
 
     <section class="section">
+      <b-modal
+        v-model="modal"
+        has-modal-card
+        trap-focus
+        :can-cancel="['escape', 'outside']"
+        aria-role="dialog"
+        aria-label="Example Modal"
+        close-button-aria-label="Close"
+        aria-modal
+      >
+        <div class="modal-card" >
+          <header class="modal-card-head  is-primary-dark">
+              <p class="modal-card-title">Ugeplan</p>
+              <button
+                  type="button"
+                  class="delete"
+                  @click="modal = false"/>
+          </header>
+          <section class="modal-card-body">
+              <div class="container has-text-centered">
+                <WeeklySchedule />
+                <WeeklySchedule />
+              </div>
+          </section >
+        </div> 
+      </b-modal> 
+
+
       <router-view/>
     </section>
 
@@ -100,6 +102,9 @@ export default {
   //   this.$store.dispatch('initializeStore')
   // },
   methods: {
+    test() {
+      console.log(this.modal)
+    },
     logout() {
       axios.post("/auth/token/logout/")
       this.$store.commit('removeToken')
