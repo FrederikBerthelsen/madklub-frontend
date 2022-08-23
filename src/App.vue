@@ -63,7 +63,6 @@
           <section class="modal-card-body">
               <div class="container has-text-centered">
                 <WeeklySchedule />
-                <WeeklySchedule />
               </div>
           </section >
         </div> 
