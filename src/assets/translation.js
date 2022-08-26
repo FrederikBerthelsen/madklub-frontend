@@ -8,5 +8,7 @@ export default {
     "The two password fields didn't match.": "De to passwords er ikke ens.",
     "This password is entirely numeric.": "Dit password må ikke kun bestå af tal.",
     "Unable to log in with provided credentials.": "Forkert email eller adgangskode prøv igen!",
-    "Invalid password.": "Forkert password."
+    "Invalid password.": "Forkert password.",
+    "Your diet is not represented in the available diets": "Din diæt er ikke repræsenteret i de tilgængelige diæter.",
+    "This list may not be empty.": "Du skal mindst vælge en diæt."
 }
