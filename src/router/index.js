@@ -42,7 +42,14 @@ const routes = [
       requireStaff: true,
     }
   },
-
+  {
+    path: '/createmadklub',
+    name: 'create-madklub',
+    component: () => import('../views/CreateMadklub.vue'),
+    meta: {
+      requireLogin: true
+    }
+  }
 ]
 
 function routerGuard(to, from, next) {

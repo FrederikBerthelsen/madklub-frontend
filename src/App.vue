@@ -7,17 +7,22 @@
         </b-navbar-item>
       </template>
       <template #end>
-        <b-navbar-item class="is-white" tag="a" @click="modal=!modal; test()">
+        <b-navbar-item class="is-white" tag="router-link" :to="{ path: '/createmadklub' }">
+          <span style="padding-right: 0.5em;">Opret madklub</span>
+          <b-icon icon="hamburger-plus" size="is-small"></b-icon>
+        </b-navbar-item>
+
+        <b-navbar-item class="is-white" tag="a" @click="modal=!modal">
           <span style="padding-right: 0.5em;">Madklub ugeplan</span>
           <b-icon icon="calendar-month" size="is-small"></b-icon>
         </b-navbar-item> 
 
-        <b-navbar-item v-if="$store.state.isStaff" class="is-white" tag="router-link" :to="{ path: '/createschema'}">
+        <b-navbar-item v-if="$store.state.isStaff" class="is-white" tag="router-link" :to="{ path: '/createschema' }">
           <span style="padding-right: 0.5em;">Madklub skema</span>
           <b-icon icon="clock-outline" size="is-small"></b-icon>
         </b-navbar-item>        
 
-        <b-navbar-item v-if="$store.state.isAuthenticated" class="is-white" tag="router-link" :to="{ path: '/profile'}">
+        <b-navbar-item v-if="$store.state.isAuthenticated" class="is-white" tag="router-link" :to="{ path: '/profile' }">
           <span style="padding-right: 0.5em;">Min bruger</span>
           <b-icon icon="account" size="is-small"></b-icon>
         </b-navbar-item>
@@ -101,9 +106,6 @@ export default {
   //   this.$store.dispatch('initializeStore')
   // },
   methods: {
-    test() {
-      console.log(this.modal)
-    },
     logout() {
       axios.post("/auth/token/logout/")
       this.$store.commit('removeToken')
