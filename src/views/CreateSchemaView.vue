@@ -1,8 +1,8 @@
 <template>
   <div class="create-schema">
     <div class="container has-text-centered">
-      <div class="columns is-flex is-vcentered">
-        <div class="column is-8 is-offset-2">
+    <div class="columns is-flex is-vcentered">
+      <div class="column is-8 is-offset-2">
           <div v-for="week in weeks" :key="week.week" class="box">
             <div class="columns">
               <div class="column is-2">
