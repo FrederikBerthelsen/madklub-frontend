@@ -7,7 +7,7 @@
         </b-navbar-item>
       </template>
       <template #end>
-        <b-navbar-item class="is-white" tag="router-link" :to="{ path: '/createmadklub' }">
+        <b-navbar-item v-if="$store.state.isAuthenticated" class="is-white" tag="router-link" :to="{ path: '/createmadklub' }">
           <span style="padding-right: 0.5em;">Opret madklub</span>
           <b-icon icon="hamburger-plus" size="is-small"></b-icon>
         </b-navbar-item>
