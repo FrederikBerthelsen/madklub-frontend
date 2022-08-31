@@ -463,8 +463,6 @@ const days = [
                      })
                    .catch(error => {
                        this.dietError = error.response.data.diet[0]
-                       console.log(error.response)
-                       console.log(this.dietError)
                        this.$store.state.isLoading = false
                        this.showError = true
                      })

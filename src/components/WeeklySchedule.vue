@@ -28,7 +28,6 @@
                 await axios.get("/schema")
                            .then(response => {
                                this.schedules = response.data
-                               console.log(this.schedules)
                            })  
             }
         }, 
