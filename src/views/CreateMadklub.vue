@@ -41,9 +41,9 @@
               @click="closeModal()"/>
           </header>
           <section class="modal-card-body">
-            <div class="divider is-primary"><p class="divider-tag">Vælg menu</p></div>
+            <div class="divider is-primary mt-0"><p class="divider-tag">Vælg menu</p></div>
             <b-field custom-class="is-medium"
-              label="Dish"
+              label="Menu"
               label-position="on-border"
             >
               <b-input
@@ -155,7 +155,7 @@
             <!--   <b-numberinput type="is-primary is-light" min="0" max="9" v-model="guests"/> -->
             <!-- </b-field> -->
           </section>
-          <footer class="modal-card-foot">
+          <footer class="modal-card-foot is-right buttons">
             <b-button
               label="Close"
               icon-left="close"
@@ -239,8 +239,10 @@ export default {
       return (day.getTime() <= today.getTime()) || !!(match)
     },
     async getMadklubs() {
+      this.$store.state.isLoading = true
       await axios.get("/madklub")
                  .then(response => {
+                   this.$store.state.isLoading = false
                    var data = response.data
                    data.forEach(element => {
                      this.reservedDates.push({date: new Date(new Date(element.date).setHours(0)), type: 'is-danger'})
@@ -308,7 +310,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 .button.is-primary.is-light {
   box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25)
 }

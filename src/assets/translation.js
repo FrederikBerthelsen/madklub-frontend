@@ -10,5 +10,6 @@ export default {
     "Unable to log in with provided credentials.": "Forkert email eller adgangskode prøv igen!",
     "Invalid password.": "Forkert password.",
     "Your diet is not represented in the available diets": "Din diæt er ikke repræsenteret i de tilgængelige diæter.",
-    "This list may not be empty.": "Du skal mindst vælge en diæt."
+    "This list may not be empty.": "Du skal mindst vælge en diæt.",
+    "You cannot remove a diet that someone has signed up as": "Du kan ikke fjerne en diæt som nogen har meldt sig på.",
 }

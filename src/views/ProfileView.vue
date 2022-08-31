@@ -11,11 +11,9 @@
         </b-tabs> -->
         <b-tabs position="is-centered" type="is-boxed" expanded @input="clearValues()">
             <b-tab-item label="Madklubber" icon="silverware-fork-knife">
-              MADKLUB <br>
-              MADKLUB <br>
-              MADKLUB <br>
-              MADKLUB <br>
-              MADKLUB <br>
+              <div style="margin-top: 4rem;">
+              </div>
+              <MadklubProfile v-for="madklub in madklubs" :key="madklub.id" :madklubObject="madklub"/>
             </b-tab-item>
             <b-tab-item label="Informationer" icon="account">
               <ChangeProfile ref="profileComponent"/>
@@ -35,20 +33,28 @@
 
 <script>
 // @ is an alias to /src
-// import axios from 'axios'
+import axios from 'axios'
 import ChangeProfile from '@/components/ChangeProfile'
 import ChangePassword from '@/components/ChangePassword'
 import ChangeEmail from '@/components/ChangeEmail'
+import MadklubProfile from '@/components/MadklubProfile'
 
 export default {
   name: 'ProfileView',
   components: {
     ChangeProfile,
     ChangePassword,
-    ChangeEmail
+    ChangeEmail,
+    MadklubProfile
+  },
+  data() {
+    return {
+      madklubs: []
+    }
   },
   mounted() {
     document.title = "Profil | Madklub"
+    this.getMadklubs()
   },
   methods: {
     clearValues() {
@@ -56,6 +62,15 @@ export default {
       for (const key in refs) {
         refs[key].clearValues()
       }
+    },
+    async getMadklubs() {
+      this.$store.state.isLoading = true
+      await axios.get("/madklub/getLatest/")
+                 .then(response => {
+                   var data = response.data
+                   this.$store.state.isLoading = false
+                   this.madklubs = data
+                })
     }
   }
 }

@@ -100,8 +100,9 @@ export default {
                  .then(response => {
                     const token = response.data.auth_token
                     const is_staff = response.data.is_staff
+                    const userEmail = response.data.email
 
-                    this.$store.commit('setToken', {token, is_staff})
+                    this.$store.commit('setToken', {token, is_staff, userEmail})
 
                     this.$router.push({ path: '/'})
                     this.$store.state.isLoading = false

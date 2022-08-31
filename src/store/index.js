@@ -10,26 +10,30 @@ export default new Vuex.Store({
     isAuthenticated: false,
     token: '',
     isStaff: false,
-    isLoading: false
+    isLoading: false,
+    userEmail: ''
   },
   getters: {
   },
   mutations: {
-    initWithToken(state, {token, is_staff}) {
+    initWithToken(state, {token, is_staff, userEmail}) {
         state.token = token
         state.isStaff = is_staff
         state.isAuthenticated = true
+        state.userEmail = userEmail
     },
     initNoToken(state) {
       state.token = ''
       state.isAuthenticated = false
+      state.userEmail = ''
     },
-    setToken(state, {token, is_staff}) {
+    setToken(state, {token, is_staff, userEmail}) {
       localStorage.setItem('token', token)
       axios.defaults.headers.common["Authorization"] = "Token " + token
       state.token = token
       state.isStaff = is_staff
       state.isAuthenticated = true
+      state.userEmail = userEmail
     },
     removeToken(state) {
       localStorage.removeItem('token')
@@ -37,18 +41,21 @@ export default new Vuex.Store({
       state.token = ''
       state.isStaff = false
       state.isAuthenticated = false
+      state.userEmail = ''
     }
   },
   actions: {
     async initializeStore() {
       const token = localStorage.getItem('token')
       var is_staff = false
+      var userEmail = ''
       if (token) {
         axios.defaults.headers.common['Authorization'] = "Token " + token
         await axios.get("/auth/is_staff")
                    .then(response => {
                      is_staff = response.data.is_staff
-                     this.commit('initWithToken', {token, is_staff})
+                     userEmail = response.data.email
+                     this.commit('initWithToken', {token, is_staff, userEmail})
                      return new Promise((resolve) => {
                         resolve(response)
                      }) 

@@ -3,7 +3,7 @@
         <div class="container has-text-centered">
             <div class="columns is-flex is-vcentered">
                 <div class="column is-6 is-offset-3">
-                    <div class="box" style="margin-top: 20%;">
+                    <div class="box" style="margin-top: 4rem;">
                         <h3 class="title">Skift password</h3>
                         <div class="divider is-primary"><p class="divider-tag">Nyt password</p></div>
                         <b-field custom-class="is-medium" 
