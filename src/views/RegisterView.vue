@@ -121,18 +121,19 @@
                   <div class="content" >
                   <h6 > Lidt om madklubben: </h6>
                   <ul>
-                    <li> <b>Vi spiser søn-tors. kl 19</b>, ikke 19:01, en kammerat har lavet mad til dig, så er du der. Madklubber kan selvfølgelig være forsinkede, skriv så vidt muligt ud. </li>
-                  <li>Prisen pr. person er ca. <b>25 maks 30</b> kr, skriv det ud hvis du vil lave noget der bliver dyrere. </li>
-                  <li>Man tilmelder sig spisning <b>inden kl. 12 på dagen</b>, vil du melde til senere, så kontakt kokken. Vil du have en ven med, spørg kokken.</li>
-                  <li>Man må spise med lige så meget eller lidt man har lyst til, men <b>man laver jo selvfølgelig med når det er ens tur</b> 😇 har man ikke mulighed for at lave mad i sin tildelte uge, finder man nogen at bytte med 😇</li>
+                    <li> <b>Vi spiser søn-tors. kl 19</b>, ikke 19:01, en kammerat har lavet mad til dig, så du møder selvfølgelig op. Madklubber kan selvfølgelig være forsinkede, skriv så vidt muligt ud. </li>
+                  <li>Prisen pr. person er ca. <b>25 maks 35</b> kr, skriv det ud hvis du vil lave noget der bliver dyrere. </li>
+                  <li>Man tilmelder sig spisning <b>inden kl. 12 på dagen</b>, vil du melde til senere, så kontakt kokken. Det er god stil at spørge kokken inden man tilmelder en ven.</li>
+                  <li>Man må spise med lige så meget eller lidt man har lyst til, men <b>man laver jo selvfølgelig mad når det er ens tur</b> 😇 har man ikke mulighed for at lave mad i sin tildelte uge, finder man nogen at bytte med 😇</li>
                   
                   </ul>
 
                   <h6 > Den gode stil: </h6>
                   <ul>
-                  <li>Kom lidt før og hold kokken med selskab, hjælp med det sidste mad, opvask og borddækning.</li>
-                  <li>Det er god madklubsstil at oprette madklub i god tid og sætte menuen så man kan tage stilling til om det er noget man kan lide. desuden er det super god stil at tilmelde sig i god tid, jeg tænker søndag inden ugen starter 😊</li>
-                  <li>Vi har nu mange vegetarer/veganere i klubben, så hav lige det i baghovedet når menuerne bestemmes </li>
+                  <li>Kom ud i køkkenet lidt før og hold kokken med selskab, hjælp med det sidste mad, opvask og borddækning.</li>
+                  <li>Det er god madklubsstil at oprette sin madklub i god tid (søndag før ens uge) og sætte menuen så man kan tage stilling til om det er noget man kan lide. Desuden er det super god stil at tilmelde sig i god tid, jeg tænker søndag inden ugen starter 😊</li>
+                  <li>Vi har nu mange vegetarer/veganere i klubben, så hav lige det i baghovedet når menuerne bestemmes. Så mange som muligt skal have mulighed for at deltage. </li>
+                  <li>Dukker du ikke op til en madklub du har tilmeldt dig til, deler du stadig udgifterne.</li>
                   </ul>
                   </div>
                 </section>
