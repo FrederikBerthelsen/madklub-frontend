@@ -502,7 +502,7 @@ const days = [
             case 'vegetarian':
               this.vegetarian += 1 + participant.guests
               break
-            case 'vega':
+            case 'vegan':
               this.vegan += 1 + participant.guests
               break
           }     
