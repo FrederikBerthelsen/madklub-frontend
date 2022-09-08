@@ -78,7 +78,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (from === VueRouter.START_LOCATION) {
+    store.state.isLoading = true
     store.dispatch('initializeStore').then(() => {
+      store.state.isLoading = false
       routerGuard(to, from, next)
     })
   } else {
