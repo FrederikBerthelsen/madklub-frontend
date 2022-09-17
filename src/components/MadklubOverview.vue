@@ -2,7 +2,7 @@
   <div class="madklubOverview" style="margin-bottom: 1em;">
     <b-collapse :open="false" animation="slide" aria-id="contentIdForA11y1">
       <template #trigger="props">
-        <div class="box" style="border-radius: 6px 6px 0 0;" :class="{ 'has-background-success' : participants.includes($store.state.userEmail) }" :aria-expanded="props.open">
+        <div class="box" style="border-radius: 6px 6px 0 0;" :class="{ 'has-background-success' : joined }" :aria-expanded="props.open">
           <div class="columns">
             <div class="column is-2">
               <h4 class="title is-5">{{ weekDay }} d. {{ dateObject.getDate() }}/{{ dateObject.getMonth() + 1}}</h4>
@@ -40,7 +40,7 @@
             <div class="column is-2">
               <b-button v-if="madklub.owner.email === $store.state.userEmail && madklub.active" type="is-info" expanded @click.stop="closeMadklub()">Luk madklub</b-button>
               <b-button v-else-if="madklub.owner.email === $store.state.userEmail && !madklub.active" type="is-info" expanded @click.stop="openMadklub()">Åben madklub</b-button>
-              <b-button v-else-if="participants.includes($store.state.userEmail)" type="is-info" :disabled="!madklub.active" expanded @click.stop="leaveMadklub()">Forlad madklub</b-button>
+              <b-button v-else-if="joined" type="is-info" :disabled="!madklub.active" expanded @click.stop="leaveMadklub()">Forlad madklub</b-button>
               <b-button v-else-if="$store.state.isAuthenticated && (madklub.diet.length <= 1)" type="is-primary" expanded :disabled="!madklub.active" @click.stop="joinMadklub(madklub.diet[0])">Deltag</b-button>
               <b-dropdown @click.native.stop expanded v-else-if="$store.state.isAuthenticated && (madklub.diet.length > 1)" aria-role="list">
                 <template #trigger="{ active }">
@@ -356,6 +356,7 @@ const days = [
         oldMadklubDate: new Date(this.madklubObject.date),
         newMadklubDate: new Date(this.madklubObject.date),
         participants: [],
+        joined: false,
         dateObject: new Date(),
         weekDay: 'Mandag',
         meat: 0,
@@ -470,15 +471,23 @@ const days = [
       async joinMadklub(diet) {
         this.$store.state.isLoading = true
         await axios.post("/madklub/join/", {'date': this.madklub.date, 'diet': diet})
-                   .then(() => {
-                       this.$emit('update')
+                   .then(response => {
+                       this.madklub = response.data
+                       this.getParticipantInfo()
+                       this.getGuests()
+                       this.joined = true
+                       this.$store.state.isLoading = false
                      })
       },
       async leaveMadklub() {
         this.$store.state.isLoading = true
         await axios.post("/madklub/leave/", {'date': this.madklub.date})
-                   .then(() => {
-                       this.$emit('update')
+                   .then(response => {
+                       this.madklub = response.data
+                       this.getParticipantInfo()
+                       this.getGuests()
+                       this.joined = false
+                       this.$store.state.isLoading = false
                      })
       },
       async saveGuests(info) {
@@ -525,6 +534,7 @@ const days = [
       this.getWeekday()
       this.getGuests()
       this.getParticipantInfo()
+      this.joined = this.participants.includes(this.$store.state.userEmail)
     }
   }
 </script>
