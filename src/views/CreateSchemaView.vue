@@ -148,7 +148,8 @@ export default {
         currentDate.setMonth(0, 1 + ((4 - currentDate.getDay()) + 7) % 7)
       }
 
-      this.selectedWeek = 2 + Math.ceil((firstThursday - currentDate) / 604800000)
+      this.selectedWeek = 1 + Math.ceil((firstThursday - currentDate) / 604800000)
+      console.log(this.selectedWeek)
     },
     getFilteredTags(text) {
       this.selectablePeople = this.allPeople.filter((option) => {
@@ -176,8 +177,12 @@ export default {
     addWeek() {
       if (this.selectedWeek >= 1 && this.selectedWeek <= 52) {
         this.weeks.push({week: this.selectedWeek, users: []})
-        this.selectedWeek += 1
+        this.selectedWeek = this.selectedWeek + 1
+        if (this.selectedWeek > 52) {
+          this.selectedWeek = 1
+        }
       }
+      console.log(this.selectedWeek)
     },
     async saveWeek(week) {
       var data = {week: week.week, user_ids: []}
